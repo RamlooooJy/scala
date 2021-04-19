@@ -156,14 +156,14 @@ abstract class BaseFish( locX: Int, locY: Int ) extends LifeForm( locX, locY ) {
   }
 }
 
-class Fish( locX: Int, locY: Int ) extends BaseFish( locX, locY ) {
+class Fish private ( locX: Int, locY: Int ) extends BaseFish( locX, locY ) {
   val symbol = 'f'
 }
 object Fish {
   def apply(locX: Int, locY: Int) = new Fish(locX: Int, locY: Int)
 }
 
-class HungryFish( locX: Int, locY: Int, fishPower:Int = 0 ) extends Fish( locX, locY ) {
+class HungryFish private ( locX: Int, locY: Int, fishPower:Int = 0 ) extends Fish( locX, locY ) {
   override val symbol = 'F'
   override val power: Int = fishPower
   override def eat (other: AquariumElement) = {
@@ -198,6 +198,7 @@ object AquariumSimulator {
     aquarium.add( Fish( rand(), rand() ) )
     aquarium.add( Fish( rand(), rand() ) )
     aquarium.add( Fish( rand(), rand() ) )
+    aquarium.add( Fish( rand(), rand() ))
     aquarium.add( HungryFish( rand(), rand(),  9) )
     aquarium.add( HungryFish( rand(), rand(), 8) )
     aquarium.add( HungryFish( rand(), rand(), 7 ) )
